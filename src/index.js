@@ -1,4 +1,5 @@
 import "./style.scss";
+import addTaskToUI from "./ui-service.js";
 
 function Task(name, description, dueDate, priority) {
     this.name = name
@@ -19,3 +20,6 @@ function Task(name, description, dueDate, priority) {
   }
 
   addToTaskList("Test", "1234", 12-12-12, "High");
+
+  let taskListUL = document.querySelector(".task-list");
+  taskListUL.appendChild(addTaskToUI("Müll rausbringen", "12-4"));
