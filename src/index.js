@@ -1,25 +1,39 @@
 import "./style.scss";
-import addTaskToUI from "./ui-service.js";
-
-function Task(name, description, dueDate, priority) {
-    this.name = name
-    this.description = description
-    this.dueDate = dueDate
-    this.priority = priority
-  }
-  
-  Task.prototype.markDone = function() {
-    console.log(this.name)
-  }
+import * as ui from "./ui-service.js";
+import { Task } from "./objects.js";
  
   let taskList = [];
+  const taskListUL = document.querySelector(".task-list");
+
+  function addForm(){
+    let taskForm = ui.addTemplateToUI();
+    taskListUL.appendChild(taskForm);
+    let saveButton = ui.findSaveButton(taskForm);
+    saveButton.addEventListener("click", () => { 
+      saveNewLine(taskForm);
+    });
+  }
+
+  function saveNewLine(newLine){
+    let title = newLine.querySelector("input[name='title']").value;
+    let date =  newLine.querySelector("input[name='date']").value;
+    addToTaskList(title, "", date, "");
+  }
 
   function addToTaskList(name, description, dueDate, priority){
     taskList.push(new Task(name, description, dueDate, priority));
-    console.log(taskList);
+    updateTaskList();
   }
 
-  addToTaskList("Test", "1234", 12-12-12, "High");
+  function updateTaskList(){
+    ui.clearTaskList(taskListUL);
+    taskList.forEach(task => {
+      taskListUL.appendChild(ui.addTaskToUI(task.name, task.dueDate));
+    });
+    let isListEmpty = (taskList.length > 0) ? false : true;
+    ui.showEmptyInfo(isListEmpty);
+    addForm();
+  }
 
-  let taskListUL = document.querySelector(".task-list");
-  taskListUL.appendChild(addTaskToUI("Müll rausbringen", "12-4"));
+  updateTaskList();
+  
