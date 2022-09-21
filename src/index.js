@@ -17,18 +17,19 @@ import { Task } from "./objects.js";
   function saveNewLine(newLine){
     let title = newLine.querySelector("input[name='title']").value;
     let date =  newLine.querySelector("input[name='date']").value;
-    addToTaskList(title, "", date, "");
+    let prio =  newLine.querySelector("select").value;
+    addToTaskList(title, "", prio, date);
   }
 
-  function addToTaskList(name, description, dueDate, priority){
-    taskList.push(new Task(name, description, dueDate, priority));
+  function addToTaskList(name, description, prio, dueDate){
+    taskList.push(new Task(name, description, prio, dueDate));
     updateTaskList();
   }
 
   function updateTaskList(){
     ui.clearTaskList(taskListUL);
     taskList.forEach(task => {
-      taskListUL.appendChild(ui.addTaskToUI(task.name, task.dueDate));
+      taskListUL.appendChild(ui.addTaskToUI(task.name, task.prio, task.dueDate));
     });
     let isListEmpty = (taskList.length > 0) ? false : true;
     ui.manageHead(isListEmpty);

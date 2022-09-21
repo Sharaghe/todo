@@ -1,8 +1,8 @@
-const Task = function(name, description, dueDate, priority) {
+const Task = function(name, description, prio, dueDate) {
     this.name = name
     this.description = description
     this.dueDate = dueDate
-    this.priority = priority
+    this.prio = prio
 }
       
 Task.prototype.markDone = function() {

@@ -1,23 +1,26 @@
-const addTaskToUI = function(name, dueDate){
+const addTaskToUI = function(nameVal, prioVal, dueDateVal){
 
     const main = document.createElement("li");
     const check = document.createElement("input");
     const title = document.createElement("div");
+    const prio = document.createElement("div");
     const date = document.createElement("div");
 
     main.setAttribute("class", "task");
     main.appendChild(check);
     main.appendChild(title);
+    main.appendChild(prio);
     main.appendChild(date);
 
     check.setAttribute("type", "checkbox");
-    title.textContent = name;
-    date.textContent = dueDate;
+    title.textContent = nameVal;
+    prio.textContent = prioVal;
+    date.textContent = dueDateVal;
 
     return main;
 }
 
-const addTemplateToUI = function(name, dueDate){
+const addTemplateToUI = function(){
 
     const main = document.createElement("li");
     const save = document.createElement("button");
@@ -26,10 +29,18 @@ const addTemplateToUI = function(name, dueDate){
     const saveIcon = document.createElement("i");
     const titleInput = document.createElement("input");
     const dateInput = document.createElement("input");
+    const prio = document.createElement("select");
+
+    prio.setAttribute("size", "1");
+    prio.append(Object.assign(document.createElement('option'),{value:"high", textContent: "Hoch"}));
+    prio.append(Object.assign(document.createElement('option'),{value:"normal", textContent: "Normal"}));
+    prio.append(Object.assign(document.createElement('option'),{value:"low", textContent: "Niedrig"}));
+
     title.appendChild(titleInput);
     save.appendChild(saveIcon);
     date.appendChild(dateInput);
     main.appendChild(title);
+    main.appendChild(prio);
     main.appendChild(date);
     main.appendChild(save);
 
@@ -38,6 +49,7 @@ const addTemplateToUI = function(name, dueDate){
     titleInput.setAttribute("name", "title");
     dateInput.setAttribute("type", "date");
     dateInput.setAttribute("name", "date");
+    dateInput.valueAsDate = new Date();
     saveIcon.classList.add("fa-solid", "fa-add");
 
 
