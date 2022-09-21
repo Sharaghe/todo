@@ -56,10 +56,11 @@ const clearTaskList = function(taskListUL){
     taskListUL.querySelectorAll('li').forEach(n => n.remove());
 }
 
-const showEmptyInfo = function(bool){
-    let display = (bool) ? "block" : "none";
-    document.querySelector(".tasklist-empty").style.display = display;
-    console.log(bool);
+const manageHead = function(bool){
+    let displayEmpty = (bool) ? "block" : "none";
+    let displayHeader = (bool) ? "none" : "flex";
+    document.querySelector(".tasklist-empty").style.display = displayEmpty;
+    document.querySelector(".tasklist-header").style.display = displayHeader;
 }
 
-export { addTaskToUI, addTemplateToUI, findSaveButton, deleteFromTaslkListUI, clearTaskList, showEmptyInfo };
+export { addTaskToUI, addTemplateToUI, findSaveButton, deleteFromTaslkListUI, clearTaskList, manageHead };

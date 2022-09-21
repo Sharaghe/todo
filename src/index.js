@@ -31,7 +31,7 @@ import { Task } from "./objects.js";
       taskListUL.appendChild(ui.addTaskToUI(task.name, task.dueDate));
     });
     let isListEmpty = (taskList.length > 0) ? false : true;
-    ui.showEmptyInfo(isListEmpty);
+    ui.manageHead(isListEmpty);
     addForm();
   }
 
