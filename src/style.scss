@@ -86,8 +86,34 @@ ul.task-list{
     padding-bottom: 20px;
     margin-bottom: 20px;
 
+    &.add-area{
+      margin-top: 50px;
+    }
+
     &.task{
       border-bottom: 1px solid $border-color;
+    }
+
+    & span.prio-tag {
+      font-size: .75rem;
+      text-transform: capitalize;
+      padding: 3px 8px;
+      border-radius: 5px;
+      color: white;
+      margin-left: 12px;
+
+      &.high {
+        background: #ee0000;
+      }
+
+      &.medium {
+        background: #456fbd;
+      }
+
+      &.low {
+        background: #51d4b1;
+      }
+
     }
 
     & > div:last-of-type{
@@ -166,6 +192,11 @@ ul.task-list{
     padding-bottom: 20px;
     margin-bottom: 25px;
     margin-top: 30px;
+
+    & > i {
+      margin-right: 10px;
+    }
+
 }
 
 .tasklist-header{

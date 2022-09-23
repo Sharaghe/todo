@@ -14,7 +14,10 @@ const addTaskToUI = function(nameVal, prioVal, dueDateVal){
 
     check.setAttribute("type", "checkbox");
     title.textContent = nameVal;
-    prio.textContent = prioVal;
+    const prioText = document.createElement("span");
+    prioText.textContent = prioVal;
+    prioText.classList.add("prio-tag", prioVal);
+    prio.appendChild(prioText);
     date.textContent = dueDateVal;
 
     return main;
@@ -23,6 +26,7 @@ const addTaskToUI = function(nameVal, prioVal, dueDateVal){
 const addTemplateToUI = function(){
 
     const main = document.createElement("li");
+    main.classList.add("add-area");
     const save = document.createElement("button");
     const title = document.createElement("div");
     const date = document.createElement("div");
@@ -33,7 +37,7 @@ const addTemplateToUI = function(){
 
     prio.setAttribute("size", "1");
     prio.append(Object.assign(document.createElement('option'),{value:"high", textContent: "Hoch"}));
-    prio.append(Object.assign(document.createElement('option'),{value:"normal", textContent: "Normal"}));
+    prio.append(Object.assign(document.createElement('option'),{value:"medium", textContent: "Normal"}));
     prio.append(Object.assign(document.createElement('option'),{value:"low", textContent: "Niedrig"}));
 
     title.appendChild(titleInput);
