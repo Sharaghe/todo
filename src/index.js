@@ -8,8 +8,9 @@ import { Task } from "./objects.js";
   function addForm(){
     let taskForm = ui.addTemplateToUI();
     taskListUL.appendChild(taskForm);
-    let saveButton = ui.findSaveButton(taskForm);
-    saveButton.addEventListener("click", () => { 
+    let form = ui.findForm(taskForm);
+    form.addEventListener("submit", (e) => { 
+      e.preventDefault();
       saveNewLine(taskForm);
     });
   }
