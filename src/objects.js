@@ -1,4 +1,5 @@
-const Task = function(name, description, prio, dueDate) {
+const Task = function(id, name, description, prio, dueDate) {
+    this.id = id;
     this.name = name
     this.description = description
     this.dueDate = dueDate

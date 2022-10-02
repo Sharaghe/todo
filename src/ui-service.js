@@ -1,4 +1,4 @@
-const addTaskToUI = function(nameVal, prioVal, dueDateVal){
+const addTaskToUI = function(id, nameVal, prioVal, dueDateVal){
 
     const main = document.createElement("li");
     const form = document.createElement("form");
@@ -8,6 +8,7 @@ const addTaskToUI = function(nameVal, prioVal, dueDateVal){
     const date = document.createElement("div");
 
     main.setAttribute("class", "task");
+    main.setAttribute("data-id", id);
     main.appendChild(form);
 
     form.appendChild(check);
@@ -37,6 +38,7 @@ const addTemplateToUI = function(){
     const title = document.createElement("div");
     const date = document.createElement("div");
     const saveIcon = document.createElement("i");
+    const submitText = document.createTextNode("Add");
     const titleInput = document.createElement("input");
     titleInput.setAttribute("required", "");
     const dateInput = document.createElement("input");
@@ -52,6 +54,7 @@ const addTemplateToUI = function(){
 
     title.appendChild(titleInput);
     save.appendChild(saveIcon);
+    save.appendChild(submitText);
     date.appendChild(dateInput);
     form.appendChild(title);
     form.appendChild(prio);
@@ -74,6 +77,10 @@ const findForm = function(line){
     return line.querySelector("form");
 }
 
+const findCheckButton = function(line){
+    return line.querySelector("input[type='checkbox']");
+}
+
 const deleteFromTaslkListUI = function(line){
     line.remove();
 }
@@ -84,9 +91,7 @@ const clearTaskList = function(taskListUL){
 
 const manageHead = function(bool){
     let displayEmpty = (bool) ? "block" : "none";
-    let displayHeader = (bool) ? "none" : "flex";
     document.querySelector(".tasklist-empty").style.display = displayEmpty;
-    document.querySelector(".tasklist-header").style.display = displayHeader;
 }
 
-export { addTaskToUI, addTemplateToUI, findForm, deleteFromTaslkListUI, clearTaskList, manageHead };
+export { addTaskToUI, addTemplateToUI, findForm, findCheckButton, deleteFromTaslkListUI, clearTaskList, manageHead };

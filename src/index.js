@@ -23,17 +23,38 @@ import { Task } from "./objects.js";
   }
 
   function addToTaskList(name, description, prio, dueDate){
-    taskList.push(new Task(name, description, prio, dueDate));
+    let id = taskList.length+1;
+    taskList.push(new Task(id, name, description, prio, dueDate));
     updateTaskList();
+  }
+
+  function toggleEmptyList(){
+    let isListEmpty = (taskList.length > 0) ? false : true;
+    ui.manageHead(isListEmpty);
+  }
+
+  function removeEntry(line){
+    let taskid = line.getAttribute("data-id");
+    taskList = taskList.filter(elem => elem.id != taskid);
+
+    line.classList.add("vanish");
+    setTimeout(updateTaskList, 1000);
   }
 
   function updateTaskList(){
     ui.clearTaskList(taskListUL);
     taskList.forEach(task => {
-      taskListUL.appendChild(ui.addTaskToUI(task.name, task.prio, task.dueDate));
+
+      var line = ui.addTaskToUI(task.id, task.name, task.prio, task.dueDate);
+      taskListUL.appendChild(line);
+
+      let checkButton = ui.findCheckButton(line);
+
+      checkButton.addEventListener("click", () => {
+        removeEntry(line);
+      });
     });
-    let isListEmpty = (taskList.length > 0) ? false : true;
-    ui.manageHead(isListEmpty);
+    toggleEmptyList();
     addForm();
   }
 
